@@ -1,61 +1,65 @@
 #include <stdio.h>
-void cargar_vector(int [] );
+int valida_rango(int,int);
 void mostrar_vector(int [] );
-void cargaProductos(int [], int []);
-// Una empresa debe registrar los pedidos recibidos de cada uno de sus 10 productos a lo largo del d�a.
+void cargaProductos(int [],int);
+// Una empresa debe registrar los pedidos recibidos de cada uno de sus 10 productos a lo largo del día. Puede haber múltiples pedidos de un producto y no hay límite en cantidad
 
 int main()
 {
-    int v[10],v2[10];
-    cargaProductos(v,v2);
+    int cod=0,v[10]= {0};
+    cod=valida_rango(0,10);
+    while(cod!=0)
+    {
+        cargaProductos(v,cod);
+        cod=valida_rango(0,10);
+    }
+    system("pause");
     mostrar_vector(v);
-    mostrar_vector(v2);
     return 0;
 }
 
-void cargar_vector(int v[])
+int valida_rango(int min,int max)
 {
-    int i;
-    for (i=0; i<5; i++)
+    int cod;
+    printf("Ingrese un codigo: ");
+    scanf("%d",&cod);
+    while(cod>max||cod<min)
     {
-        printf("Ingrese un numero: ");
-        scanf("%d",&v[i]);
-        fflush(stdin);
+        printf("\n Error. Reingrese codigo: ");
+        scanf("%d",&cod);
     }
+
+    fflush(stdin);
+    return cod;
 }
 
+void cargaProductos(int v[],int cod)
+{
+    int cant=0;
+    printf("\nIngrese cuantas unidades quiere:");
+    scanf("%d",&cant);
+    if(cant>0)
+    {
+        v[cod-1]=+cant;
+        fflush(stdin);
+    }
+    else
+    {
+        printf("\nError. Ingrese un numero positivo\n");
+    }
+    ;
+}
 
 void mostrar_vector(int v[])
 {
     int i;
-    for (i=1; i<11; i++)
+    for (i=0; i<10; i++)
         printf("%d\n", v[i]);
 
 }
 
-void cargaProductos(int vcod[], int v_unidades[])
-{
-    int i;
-    for (i=1; i<11; i++)
-    {
-        do
-        {
-            printf("\nIngrese el codigo de producto: ");
-            scanf("%d",&vcod[i]);
-        }
-        while(vcod[i]!=0&&vcod[i]<0||vcod[i]>11);
 
-        while(vcod[i]!=0)
-        {
-            do
-            {
-                printf("\nIngrese cuantas unidades quiere del producto %d: ", vcod[i]);
-                scanf("%f",&v_unidades[i]);
-                fflush(stdin);
-            }
-            while(v_unidades[i]<0);
-        };
-    }
-}
+
+
 
 
