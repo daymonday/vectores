@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-/*En un negocio trabajan 12 vendedores. Cada vez que se realiza una venta durante el día, se emite una factura
+/*En un negocio trabajan 12 vendedores. Cada vez que se realiza una venta durante el dÃ­a, se emite una factura
 donde se indican los siguientes datos:
-• Número de Factura (entero, mayor que cero).
-• Código de vendedor (entero de 1 a 12).
-• Importe de la venta (real, mayor que cero).
-La información termina con un número de Factura igual a cero. Al principio del ingreso, se debe solicitar la
-fecha del día de procesamiento. Se pide informar con las leyendas aclaratorias:
-• Importe total de facturación por cada vendedor y Cantidad de facturas emitidas por vendedor, ,
+â€¢ NÃºmero de Factura (entero, mayor que cero).
+â€¢ CÃ³digo de vendedor (entero de 1 a 12).
+â€¢ Importe de la venta (real, mayor que cero).
+La informaciÃ³n termina con un nÃºmero de Factura igual a cero. Al principio del ingreso, se debe solicitar la
+fecha del dÃ­a de procesamiento. Se pide informar con las leyendas aclaratorias:
+â€¢ Importe total de facturaciÃ³n por cada vendedor y Cantidad de facturas emitidas por vendedor, ,
 con el siguiente formato:(...)
 */
 
@@ -20,13 +20,9 @@ int main()
     int i=0,nrofactura[12], codvendedor[12], facturas[12];
     float importe, impvendedor[12];
     cargarDatos ( nrofactura, codvendedor,importe);
+     facturas[i]= cantFacturas(nrofactura);
+     impvendedor[i] = cuentaVentas (importe);
     /* printf("FECHA: %d / % d / %d",dia,mes,anio);*/
-
-    for(i=0; i<12; i++)
-    {
-        facturas[i]= cantFacturas(nrofactura);
-        impvendedor[i] = cuentaVentas (importe);
-    }
     printf("\n Nro. de Vendedor \t Suma de importe: \t Cant. facturas emitidas:\n");
     for(i=0; i<12; i++)
     {
@@ -40,15 +36,13 @@ int main()
 void cargarDatos ( int nrofactura[],int codvendedor[],float importe)
 {
     int i=0;
-    for(i=0; i<12; i++)
-    {
-        do
+    do
         {
             printf("\n Ingrese el nro. de factura [MAYOR QUE CERO]:");
             scanf("%d",&nrofactura[i]);
             fflush(stdin);
         }
-        while(nrofactura[i]>=0);
+        while(nrofactura[i]<0);
 
         while(nrofactura[i]!=0)
         {
@@ -67,7 +61,7 @@ void cargarDatos ( int nrofactura[],int codvendedor[],float importe)
             do
             {
                 printf("\n Ingrese codigo de vendedor [1 A 12]:");
-                scanf("%d",codvendedor[i]);
+                scanf("%d",&codvendedor[i]);
                 fflush(stdin);
             }
             while(codvendedor[i]<1||codvendedor[i]>12);
@@ -85,7 +79,7 @@ void cargarDatos ( int nrofactura[],int codvendedor[],float importe)
                 scanf("%d",&nrofactura[i]);
                 fflush(stdin);
             }
-            while(nrofactura[i]>=0);
+            while(nrofactura[i]<0);
 
         }
 
@@ -96,25 +90,18 @@ float cuentaVentas (float importe)
 {
     int i;
     float impvendedor[i];
-    for(i=0; i<12; i++)
-    {
-        impvendedor[i]=+importe;
+    impvendedor[i]=+importe;
 
-    }
     return impvendedor[i];
 }
 
 int cantFacturas(int nrofactura[])
 {
     int i,facturas[i];
-    for(i=0; i<12; i++)
-    {
-        if(nrofactura[i]!=0)
+ if(nrofactura[i]!=0)
 
         {
             facturas[i]=+1;
         }
-
-    }
     return facturas[i];
 }
